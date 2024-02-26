@@ -9,7 +9,7 @@
 // *******************************************************************************
 
 // scss-docs-start gray-color-variables
-$white: #fff !default;
+$white: #f1f2f3 !default;
 $black: #4b465c !default;
 $gray-25: rgba($black, 0.015) !default; // (C)
 $gray-50: rgba($black, 0.03) !default; // (C)
@@ -51,7 +51,7 @@ $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
-$light: #dfdfe3 !default;
+$light: rgb(26, 50, 88) !default;
 $dark: #4b4b4b !default;
 $gray: $gray-100 !default; // (C)
 // scss-docs-end theme-color-variables

@@ -38,8 +38,8 @@
     <div class="authentication-inner row">
       <!-- /Left Text -->
       <div class="d-none d-lg-flex col-lg-7 p-0">
-        <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center" style="background:#1A3258">
-          <img src="{{ asset('images/logo_light.png') }}" alt="auth-login-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="logo_light.png" data-app-dark-img="logo_light.png">
+        <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center" style="background:#cdd2de;">
+          <img src="{{ asset('images/logo.png') }}"  alt="auth-login-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="logo.png" data-app-dark-img="logo.png">
 {{--          <img src="{{ asset('assets/img/illustrations/auth-login-illustration-'.$configData['style'].'.png') }}" alt="auth-login-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-login-illustration-light.png" data-app-dark-img="illustrations/auth-login-illustration-dark.png">--}}
 
           <img src="{{ asset('assets/img/illustrations/bg-shape-image-'.$configData['style'].'.png') }}" alt="auth-login-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png">
@@ -54,7 +54,8 @@
           <!-- Logo -->
           <div class="app-brand mb-4">
             <a href="{{url('/')}}" class="app-brand-link gap-2 mx-5 px-5">
-              <span class=""><img src="{{ asset('images/logo.png') }}" height="90px" width="115px" alt="auth-login-cover"/></span>
+              <span class="">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
+{{--              <span class=""><img src="{{ asset('images/logo.png') }}" height="90px" width="115px" alt="auth-login-cover"/></span>--}}
             </a>
           </div>
           <!-- /Logo -->
@@ -102,7 +103,7 @@
 
               <div class="col-12">
                 <div class="mb-4">
-                  <button class="btn btn-success bg-blue-950 w-100 primary-color" type="submit" style="background:#1A3258; color: #f17114">SIGN IN</button>
+                  <button class="btn bg-blue-950 w-100 primary-color" type="submit" style="background:#1A3258; color: #f5f2f1">SIGN IN</button>
 
                   <div class="mb-4 mt-3">
                     @if (Route::has('password.request'))

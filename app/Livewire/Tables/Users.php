@@ -19,21 +19,31 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class Users extends PowerGridComponent
 {
     use WithExport;
+  public int $perPage = 10;
+  public string $tableName="Users List";
 
-    public function setUp(): array
-    {
-        $this->showCheckBox();
+  public array $perPageValues = [0, 5, 10, 15, 20, 30, 50];
 
-        return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
-            Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),
-        ];
-    }
+  public function setUp(): array
+  {
+    $this->showCheckBox();
+
+    return [
+      Exportable::make('export')
+        ->striped()
+        ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+      Header::make()->showSearchInput()
+        ->showToggleColumns()
+        ->includeViewOnBottom('components.datatable.header-bottom')
+        ->includeViewOnTop('components.datatable.header-top'),
+      Footer::make()
+        ->showPerPage()
+//                ->showRecordCount()
+        ->showPerPage($this->perPage, $this->perPageValues)
+        ->showRecordCount(mode: 'full')
+        ->pagination('vendor.livewire.bootstrap'),
+    ];
+  }
 
     public function datasource(): Builder
     {
