@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Tables;
 
-use App\Models\Activity;
-use App\Models\Offender;
+use App\Models\Offense;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -17,7 +17,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class Activities extends PowerGridComponent
+final class Offenses extends PowerGridComponent
 {
     use WithExport;
 
@@ -38,47 +38,56 @@ final class Activities extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Activity::query()->with('user');
+        return Offense::query();
     }
 
     public function relationSearch(): array
     {
-        return [
-          'user.name',
-          'user.email',
-        ];
+        return [];
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('user', fn(Activity $activity) => $activity->user->name)
-            ->add('section')
-            ->add('action')
-            ->add('target')
-            ->add('created_at');
+            ->add('offence_name')
+            ->add('description')
+            ->add('fine_amount')
+            ->add('imprisonment_duration');
+//            ->add('created_at');
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-          Column::make('Performed By', 'user')
+            Column::make('Offence name', 'offence_name')
                 ->sortable()
                 ->searchable(),
-          Column::make('Action', 'action')
-            ->searchable(),
-          Column::make('Section', 'section')
-            ->searchable(),
-          Column::make('Target', 'target')
-            ->searchable(),
-          Column::make('Date-Time', 'created_at')
-            ->sortable()
-            ->searchable(),
+
+            Column::make('Description', 'description')
+                ->sortable()
+                ->searchable(),
+            Column::make('Fine amount', 'fine_amount')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Imprisonment duration', 'imprisonment_duration')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Created at', 'created_at')
+                ->sortable()
+                ->searchable(),
+
             Column::action('Action')
         ];
     }
+  public function map($data)
+  {
+    $data['description'] = \Illuminate\Support\Str::limit($data['description'], 5);
+    return $data;
+  }
 
     public function filters(): array
     {
@@ -89,17 +98,27 @@ final class Activities extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-//        $this->js('alert('.$rowId.')');
+
+    }
+    #[\Livewire\Attributes\On('view')]
+    public function view($rowId): void
+    {
+
     }
 
-    public function actions(Activity $row): array
+    public function actions(Offense $row): array
     {
         return [
             Button::add('edit')
+                ->slot('Edit')
+                ->id()
+                ->class('btn btn-sm btn-danger pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('edit', ['rowId' => $row->id]),
+      Button::add('view')
                 ->slot('View ')
                 ->id()
                 ->class('btn btn-sm btn-primary pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->dispatch('view', ['rowId' => $row->id])
         ];
     }
 

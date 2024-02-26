@@ -30,6 +30,12 @@
       "slug": "pages-stations"
     },
     {
+      "url": "offenses",
+      "name": "Offenses",
+      "icon": "menu-icon tf-icons ti ti-burn",
+      "slug": "pages-offenses"
+    },
+    {
       "url": "bookings",
       "name": "Bookings",
       "icon": "menu-icon tf-icons ti ti-list",
