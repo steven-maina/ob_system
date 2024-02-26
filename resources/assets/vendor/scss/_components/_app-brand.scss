@@ -33,6 +33,7 @@
 .app-brand-text {
   flex-shrink: 0;
   opacity: 1;
+  color: #0e2549;
   transition: opacity $menu-animation-duration ease-in-out;
   @include ltr-style() {
     margin-left: 0.625rem !important;

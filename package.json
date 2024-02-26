@@ -128,6 +128,7 @@
         "@yaireo/tagify": "~4.21.1",
         "animate.css": "~4.1.1",
         "aos": "~2.3.4",
+        "apexcharts": "^3.46.0",
         "apexcharts-clevision": "^3.28.5",
         "autosize": "~6.0.1",
         "block-ui": "~2.70.1",
