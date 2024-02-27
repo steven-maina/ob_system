@@ -276,7 +276,7 @@
                         @endif
                       </span>
                           <small class="text-muted">
-                            @if(auth()->user()->roles->isNotEmpty())
+                            @if(Auth::user() && auth()->user()->roles->isNotEmpty())
                               <p><i class="fa fa-unlock px-1"></i> {{ auth()->user()->roles->first()->name }}</p>
                               <p><i class="fa fa-clock px-1"></i> Last Logged In: {{ session('last_logged_at') }}</p>
                               {{--                              @auth--}}
