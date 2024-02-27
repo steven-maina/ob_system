@@ -3,7 +3,7 @@
     {
       "url": "/",
       "name": "Dashboard",
-      "icon": "menu-icon tf-icons ti ti-grid4",
+      "icon": "menu-icon tf-icons ti ti-home",
       "slug": "pages-home"
     },
     {
@@ -32,7 +32,7 @@
     {
       "url": "offenses",
       "name": "Offenses",
-      "icon": "menu-icon tf-icons ti ti-list",
+      "icon": "menu-icon tf-icons ti ti-file",
       "slug": "pages-offenses"
     },
     {

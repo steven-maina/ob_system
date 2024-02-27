@@ -2,36 +2,79 @@
   "menu": [
     {
       "url": "/",
-      "name": "Home",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons ti ti-home",
       "slug": "pages-home"
     },
     {
-      "url": "page-2",
+      "name": "Users",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "app-user",
+      "submenu": [
+        {
+          "url": "users",
+          "name": "All Users",
+          "slug": "app-user-list"
+        },
+        {
+          "url": "officers",
+          "name": "Officers",
+          "slug": "app-user-list"
+        }
+      ]
+    },
+    {
+      "url": "stations",
+      "name": "Stations",
+      "icon": "menu-icon tf-icons ti ti-building",
+      "slug": "pages-stations"
+    },
+    {
+      "url": "offenses",
+      "name": "Offenses",
       "icon": "menu-icon tf-icons ti ti-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
+      "slug": "pages-offenses"
     },
     {
-      "url": "pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
+      "url": "bookings",
+      "name": "Bookings",
+      "icon": "menu-icon tf-icons ti ti-list",
+      "slug": "pages-bookings"
     },
     {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
+      "url": "offenders",
+      "name": "Offenders",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "pages-offenders"
     },
     {
-      "url": "auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
+      "url": "offended",
+      "name": "Offended",
+      "icon": "menu-icon tf-icons ti ti-tags",
+      "slug": "pages-offended"
+    },
+    {
+      "name": "Roles & Permissions",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": "app-access",
+      "submenu": [
+        {
+          "url": "roles",
+          "name": "Roles",
+          "slug": "app-access-roles"
+        },
+        {
+          "url": "permissions",
+          "name": "Permission",
+          "slug": "app-access-permission"
+        }
+      ]
+    },
+    {
+      "url": "activity",
+      "name": "Activity Logs",
+      "icon": "menu-icon tf-icons ti ti-activity",
+      "slug": "pages-activities"
     }
   ]
 }
