@@ -45,7 +45,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 // pages
 Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
 
-
 Auth::routes();
 
 Route::redirect('/', 'login');

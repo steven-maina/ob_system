@@ -365,7 +365,7 @@
     "isEntry": true
   },
   "resources/assets/js/app-ecommerce-customer-detail-overview.js": {
-    "file": "assets/app-ecommerce-customer-detail-overview-7LKIiJOJ.js",
+    "file": "assets/app-ecommerce-customer-detail-overview-sKYaaaqH.js",
     "src": "resources/assets/js/app-ecommerce-customer-detail-overview.js",
     "isEntry": true
   },
@@ -375,7 +375,7 @@
     "isEntry": true
   },
   "resources/assets/js/app-ecommerce-dashboard.js": {
-    "file": "assets/app-ecommerce-dashboard-BaPyE985.js",
+    "file": "assets/app-ecommerce-dashboard-BQ7YB804.js",
     "src": "resources/assets/js/app-ecommerce-dashboard.js",
     "isEntry": true
   },
@@ -405,17 +405,17 @@
     "isEntry": true
   },
   "resources/assets/js/app-ecommerce-reviews.js": {
-    "file": "assets/app-ecommerce-reviews-CvdJtN_r.js",
+    "file": "assets/app-ecommerce-reviews-BZBwK7qe.js",
     "src": "resources/assets/js/app-ecommerce-reviews.js",
     "isEntry": true
   },
   "resources/assets/js/app-ecommerce-settings.js": {
-    "file": "assets/app-ecommerce-settings-Bedalgox.js",
+    "file": "assets/app-ecommerce-settings-xedMzX_0.js",
     "src": "resources/assets/js/app-ecommerce-settings.js",
     "isEntry": true
   },
   "resources/assets/js/app-email.js": {
-    "file": "assets/app-email-DReh2Pes.js",
+    "file": "assets/app-email-BYEimThn.js",
     "src": "resources/assets/js/app-email.js",
     "isEntry": true
   },
@@ -455,7 +455,7 @@
     "isEntry": true
   },
   "resources/assets/js/app-user-list.js": {
-    "file": "assets/app-user-list-6tdZPC1o.js",
+    "file": "assets/app-user-list-B1ne7iZP.js",
     "src": "resources/assets/js/app-user-list.js",
     "isEntry": true
   },
@@ -485,7 +485,7 @@
     "isEntry": true
   },
   "resources/assets/js/cards-advance.js": {
-    "file": "assets/cards-advance-BKuIasWm.js",
+    "file": "assets/cards-advance-CVfdOcg1.js",
     "src": "resources/assets/js/cards-advance.js",
     "isEntry": true
   },
@@ -495,27 +495,27 @@
     "isEntry": true
   },
   "resources/assets/js/cards-statistics.js": {
-    "file": "assets/cards-statistics-DLcUz0h0.js",
+    "file": "assets/cards-statistics-d-bS4oUp.js",
     "src": "resources/assets/js/cards-statistics.js",
     "isEntry": true
   },
   "resources/assets/js/charts-apex.js": {
-    "file": "assets/charts-apex-DCd9fhfS.js",
+    "file": "assets/charts-apex-D0wLvH7I.js",
     "src": "resources/assets/js/charts-apex.js",
     "isEntry": true
   },
   "resources/assets/js/charts-chartjs.js": {
-    "file": "assets/charts-chartjs-CmSRshoe.js",
+    "file": "assets/charts-chartjs-9WErZEOc.js",
     "src": "resources/assets/js/charts-chartjs.js",
     "isEntry": true
   },
   "resources/assets/js/config.js": {
-    "file": "assets/config-DKpSQTQS.js",
+    "file": "assets/config-BPFTBIYD.js",
     "src": "resources/assets/js/config.js",
     "isEntry": true
   },
   "resources/assets/js/dashboards-analytics.js": {
-    "file": "assets/dashboards-analytics-DSVx9Wtl.js",
+    "file": "assets/dashboards-analytics-CjNzn7Yr.js",
     "src": "resources/assets/js/dashboards-analytics.js",
     "isEntry": true
   },
@@ -560,7 +560,7 @@
     "isEntry": true
   },
   "resources/assets/js/extended-ui-perfect-scrollbar.js": {
-    "file": "assets/extended-ui-perfect-scrollbar-pDu24ulm.js",
+    "file": "assets/extended-ui-perfect-scrollbar-87gYG_r1.js",
     "src": "resources/assets/js/extended-ui-perfect-scrollbar.js",
     "isEntry": true
   },
@@ -570,7 +570,7 @@
     "isEntry": true
   },
   "resources/assets/js/extended-ui-sweetalert2.js": {
-    "file": "assets/extended-ui-sweetalert2-qj10EMwk.js",
+    "file": "assets/extended-ui-sweetalert2-BiM4xe9O.js",
     "src": "resources/assets/js/extended-ui-sweetalert2.js",
     "isEntry": true
   },
@@ -590,12 +590,12 @@
     "isEntry": true
   },
   "resources/assets/js/form-basic-inputs.js": {
-    "file": "assets/form-basic-inputs-U15vtRed.js",
+    "file": "assets/form-basic-inputs-CjS8llQr.js",
     "src": "resources/assets/js/form-basic-inputs.js",
     "isEntry": true
   },
   "resources/assets/js/form-input-group.js": {
-    "file": "assets/form-input-group-WcFco6xJ.js",
+    "file": "assets/form-input-group-BtI2jYJc.js",
     "src": "resources/assets/js/form-input-group.js",
     "isEntry": true
   },
@@ -610,12 +610,12 @@
     "isEntry": true
   },
   "resources/assets/js/form-wizard-icons.js": {
-    "file": "assets/form-wizard-icons-BbcU1p_2.js",
+    "file": "assets/form-wizard-icons-CJ8SPgEq.js",
     "src": "resources/assets/js/form-wizard-icons.js",
     "isEntry": true
   },
   "resources/assets/js/form-wizard-numbered.js": {
-    "file": "assets/form-wizard-numbered-C_2Ampvr.js",
+    "file": "assets/form-wizard-numbered-B6o9k6mh.js",
     "src": "resources/assets/js/form-wizard-numbered.js",
     "isEntry": true
   },
@@ -625,7 +625,7 @@
     "isEntry": true
   },
   "resources/assets/js/forms-editors.js": {
-    "file": "assets/forms-editors-DiBaAZdQ.js",
+    "file": "assets/forms-editors-CvmzzhJP.js",
     "src": "resources/assets/js/forms-editors.js",
     "isEntry": true
   },
@@ -670,7 +670,7 @@
     "isEntry": true
   },
   "resources/assets/js/front-main.js": {
-    "file": "assets/front-main-ClIUICqw.js",
+    "file": "assets/front-main-CaiZBkP-.js",
     "src": "resources/assets/js/front-main.js",
     "isEntry": true
   },
@@ -690,7 +690,7 @@
     "isEntry": true
   },
   "resources/assets/js/main.js": {
-    "file": "assets/main-5j7CE6ND.js",
+    "file": "assets/main-C-BKxcyQ.js",
     "src": "resources/assets/js/main.js",
     "isEntry": true
   },
@@ -825,7 +825,7 @@
     "isEntry": true
   },
   "resources/assets/js/ui-carousel.js": {
-    "file": "assets/ui-carousel-DGh-vE0w.js",
+    "file": "assets/ui-carousel-Bb45Wu2H.js",
     "src": "resources/assets/js/ui-carousel.js",
     "isEntry": true
   },
@@ -840,7 +840,7 @@
     "isEntry": true
   },
   "resources/assets/js/ui-navbar.js": {
-    "file": "assets/ui-navbar-GHWOeziO.js",
+    "file": "assets/ui-navbar-BP7V86YQ.js",
     "src": "resources/assets/js/ui-navbar.js",
     "isEntry": true
   },
@@ -850,7 +850,7 @@
     "isEntry": true
   },
   "resources/assets/js/ui-toasts.js": {
-    "file": "assets/ui-toasts-CjxInUzD.js",
+    "file": "assets/ui-toasts-Wmi-2L3o.js",
     "src": "resources/assets/js/ui-toasts.js",
     "isEntry": true
   },
@@ -3125,7 +3125,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/app-ecommerce-customer-detail-overview.js": {
-    "file": "assets/app-ecommerce-customer-detail-overview-sKYaaaqH.js",
+    "file": "assets/app-ecommerce-customer-detail-overview-7LKIiJOJ.js",
     "src": "resources/assets/vendor/js/app-ecommerce-customer-detail-overview.js",
     "isEntry": true
   },
@@ -3135,27 +3135,27 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/app-ecommerce-dashboard.js": {
-    "file": "assets/app-ecommerce-dashboard-BQ7YB804.js",
+    "file": "assets/app-ecommerce-dashboard-BaPyE985.js",
     "src": "resources/assets/vendor/js/app-ecommerce-dashboard.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/app-ecommerce-reviews.js": {
-    "file": "assets/app-ecommerce-reviews-BZBwK7qe.js",
+    "file": "assets/app-ecommerce-reviews-CvdJtN_r.js",
     "src": "resources/assets/vendor/js/app-ecommerce-reviews.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/app-ecommerce-settings.js": {
-    "file": "assets/app-ecommerce-settings-xedMzX_0.js",
+    "file": "assets/app-ecommerce-settings-Bedalgox.js",
     "src": "resources/assets/vendor/js/app-ecommerce-settings.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/app-email.js": {
-    "file": "assets/app-email-BYEimThn.js",
+    "file": "assets/app-email-DReh2Pes.js",
     "src": "resources/assets/vendor/js/app-email.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/app-user-list.js": {
-    "file": "assets/app-user-list-B1ne7iZP.js",
+    "file": "assets/app-user-list-6tdZPC1o.js",
     "src": "resources/assets/vendor/js/app-user-list.js",
     "isEntry": true
   },
@@ -3175,7 +3175,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/cards-advance.js": {
-    "file": "assets/cards-advance-CVfdOcg1.js",
+    "file": "assets/cards-advance-BKuIasWm.js",
     "src": "resources/assets/vendor/js/cards-advance.js",
     "isEntry": true
   },
@@ -3185,27 +3185,27 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/cards-statistics.js": {
-    "file": "assets/cards-statistics-d-bS4oUp.js",
+    "file": "assets/cards-statistics-DLcUz0h0.js",
     "src": "resources/assets/vendor/js/cards-statistics.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/charts-apex.js": {
-    "file": "assets/charts-apex-D0wLvH7I.js",
+    "file": "assets/charts-apex-DCd9fhfS.js",
     "src": "resources/assets/vendor/js/charts-apex.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/charts-chartjs.js": {
-    "file": "assets/charts-chartjs-9WErZEOc.js",
+    "file": "assets/charts-chartjs-CmSRshoe.js",
     "src": "resources/assets/vendor/js/charts-chartjs.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/config.js": {
-    "file": "assets/config-BPFTBIYD.js",
+    "file": "assets/config-DKpSQTQS.js",
     "src": "resources/assets/vendor/js/config.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/dashboards-analytics.js": {
-    "file": "assets/dashboards-analytics-CjNzn7Yr.js",
+    "file": "assets/dashboards-analytics-DSVx9Wtl.js",
     "src": "resources/assets/vendor/js/dashboards-analytics.js",
     "isEntry": true
   },
@@ -3215,7 +3215,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/extended-ui-perfect-scrollbar.js": {
-    "file": "assets/extended-ui-perfect-scrollbar-87gYG_r1.js",
+    "file": "assets/extended-ui-perfect-scrollbar-pDu24ulm.js",
     "src": "resources/assets/vendor/js/extended-ui-perfect-scrollbar.js",
     "isEntry": true
   },
@@ -3225,17 +3225,17 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/extended-ui-sweetalert2.js": {
-    "file": "assets/extended-ui-sweetalert2-BiM4xe9O.js",
+    "file": "assets/extended-ui-sweetalert2-qj10EMwk.js",
     "src": "resources/assets/vendor/js/extended-ui-sweetalert2.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/form-basic-inputs.js": {
-    "file": "assets/form-basic-inputs-CjS8llQr.js",
+    "file": "assets/form-basic-inputs-U15vtRed.js",
     "src": "resources/assets/vendor/js/form-basic-inputs.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/form-input-group.js": {
-    "file": "assets/form-input-group-BtI2jYJc.js",
+    "file": "assets/form-input-group-WcFco6xJ.js",
     "src": "resources/assets/vendor/js/form-input-group.js",
     "isEntry": true
   },
@@ -3250,12 +3250,12 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/form-wizard-icons.js": {
-    "file": "assets/form-wizard-icons-CJ8SPgEq.js",
+    "file": "assets/form-wizard-icons-BbcU1p_2.js",
     "src": "resources/assets/vendor/js/form-wizard-icons.js",
     "isEntry": true
   },
   "resources/assets/vendor/js/form-wizard-numbered.js": {
-    "file": "assets/form-wizard-numbered-B6o9k6mh.js",
+    "file": "assets/form-wizard-numbered-C_2Ampvr.js",
     "src": "resources/assets/vendor/js/form-wizard-numbered.js",
     "isEntry": true
   },
@@ -3265,7 +3265,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/forms-editors.js": {
-    "file": "assets/forms-editors-CvmzzhJP.js",
+    "file": "assets/forms-editors-DiBaAZdQ.js",
     "src": "resources/assets/vendor/js/forms-editors.js",
     "isEntry": true
   },
@@ -3300,7 +3300,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/front-main.js": {
-    "file": "assets/front-main-CaiZBkP-.js",
+    "file": "assets/front-main-ClIUICqw.js",
     "src": "resources/assets/vendor/js/front-main.js",
     "isEntry": true
   },
@@ -3315,7 +3315,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/main.js": {
-    "file": "assets/main-C-BKxcyQ.js",
+    "file": "assets/main-5j7CE6ND.js",
     "src": "resources/assets/vendor/js/main.js",
     "isEntry": true
   },
@@ -3368,7 +3368,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/ui-carousel.js": {
-    "file": "assets/ui-carousel-Bb45Wu2H.js",
+    "file": "assets/ui-carousel-DGh-vE0w.js",
     "src": "resources/assets/vendor/js/ui-carousel.js",
     "isEntry": true
   },
@@ -3383,7 +3383,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/ui-navbar.js": {
-    "file": "assets/ui-navbar-BP7V86YQ.js",
+    "file": "assets/ui-navbar-GHWOeziO.js",
     "src": "resources/assets/vendor/js/ui-navbar.js",
     "isEntry": true
   },
@@ -3393,7 +3393,7 @@
     "isEntry": true
   },
   "resources/assets/vendor/js/ui-toasts.js": {
-    "file": "assets/ui-toasts-Wmi-2L3o.js",
+    "file": "assets/ui-toasts-CjxInUzD.js",
     "src": "resources/assets/vendor/js/ui-toasts.js",
     "isEntry": true
   },
