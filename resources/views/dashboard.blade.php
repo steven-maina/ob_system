@@ -22,9 +22,6 @@
 @section('page-script')
   @vite(['resources/assets/js/app-ecommerce-dashboard.js'])
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="resources/assets/vendor/js/charts/apexcharts.min.js"></script>
-  <script src="resources/assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
 @endsection
 
 @section('content')
@@ -101,6 +98,98 @@
       </div>
     </div>
   </div>
+{{--  <div class="row g-4 my-2">--}}
+{{--        <label Search Filter>--}}
+{{--          <select>--}}
+{{--            <option>  </option>--}}
+{{--          </select>--}}
+{{--        </label>--}}
+{{--    <div class="col-sm-6 col-xl-3">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card-body">--}}
+{{--          <div class="d-flex align-items-start justify-content-between">--}}
+{{--            <div class="content-left">--}}
+{{--              <span>Session</span>--}}
+{{--              <div class="d-flex align-items-center my-2">--}}
+{{--                <h3 class="mb-0 me-2">21,459</h3>--}}
+{{--                <p class="text-success mb-0">(+29%)</p>--}}
+{{--              </div>--}}
+{{--              <p class="mb-0">Total Users</p>--}}
+{{--            </div>--}}
+{{--            <div class="avatar">--}}
+{{--            <span class="avatar-initial rounded bg-label-primary">--}}
+{{--              <i class="ti ti-user ti-sm"></i>--}}
+{{--            </span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+{{--    <div class="col-sm-6 col-xl-3">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card-body">--}}
+{{--          <div class="d-flex align-items-start justify-content-between">--}}
+{{--            <div class="content-left">--}}
+{{--              <span>Paid Users</span>--}}
+{{--              <div class="d-flex align-items-center my-2">--}}
+{{--                <h3 class="mb-0 me-2">4,567</h3>--}}
+{{--                <p class="text-success mb-0">(+18%)</p>--}}
+{{--              </div>--}}
+{{--              <p class="mb-0">Last week analytics </p>--}}
+{{--            </div>--}}
+{{--            <div class="avatar">--}}
+{{--            <span class="avatar-initial rounded bg-label-danger">--}}
+{{--              <i class="ti ti-user-plus ti-sm"></i>--}}
+{{--            </span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+{{--    <div class="col-sm-6 col-xl-3">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card-body">--}}
+{{--          <div class="d-flex align-items-start justify-content-between">--}}
+{{--            <div class="content-left">--}}
+{{--              <span>Active Users</span>--}}
+{{--              <div class="d-flex align-items-center my-2">--}}
+{{--                <h3 class="mb-0 me-2">19,860</h3>--}}
+{{--                <p class="text-danger mb-0">(-14%)</p>--}}
+{{--              </div>--}}
+{{--              <p class="mb-0">Last week analytics</p>--}}
+{{--            </div>--}}
+{{--            <div class="avatar">--}}
+{{--            <span class="avatar-initial rounded bg-label-success">--}}
+{{--              <i class="ti ti-user-check ti-sm"></i>--}}
+{{--            </span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+{{--    <div class="col-sm-6 col-xl-3">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card-body">--}}
+{{--          <div class="d-flex align-items-start justify-content-between">--}}
+{{--            <div class="content-left">--}}
+{{--              <span>Pending Users</span>--}}
+{{--              <div class="d-flex align-items-center my-2">--}}
+{{--                <h3 class="mb-0 me-2">237</h3>--}}
+{{--                <p class="text-success mb-0">(+42%)</p>--}}
+{{--              </div>--}}
+{{--              <p class="mb-0">Last week analytics</p>--}}
+{{--            </div>--}}
+{{--            <div class="avatar">--}}
+{{--            <span class="avatar-initial rounded bg-label-warning">--}}
+{{--              <i class="ti ti-user-exclamation ti-sm"></i>--}}
+{{--            </span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+
+{{--  </div>--}}
 
     <section id="chartjs-chart">
       <div class="row">
@@ -113,7 +202,7 @@
 {{--                <h4 class="card-title">{!! ucwords("Monthly Visits by Gender") !!}</h4>--}}
               </div>
             </div>
-            <div class="card-body">here
+            <div class="card-body">
               <canvas id="monthly-offenders" class="chartjs" data-height="400"></canvas>
             </div>
             <div class="header-right d-flex align-items-center pl-2">
@@ -128,11 +217,11 @@
             </div>
           </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
           $(document).ready(function() {
             var BarChart = {!! $BarChart !!};
-            console.log("bar chart");
-            console.log(BarChart);
             var ctx = document.getElementById('monthly-offenders').getContext('2d');
             var myChart = new Chart(ctx, {
               type: 'bar',
@@ -157,17 +246,18 @@
           <div class="card">
             <div class="card-header">
               <p class="card-subtitle text-muted mb-25">{!! ucwords("Monthly Offenders by Age") !!}</p>
-{{--              <h4 class="card-title">{!! ucwords("Monthly Offenders by AGE") !!}</h4>--}}
             </div>
             <div class="card-body">
-              <canvas id="monthly-visitors-by-age1" height="274"></canvas>
+              <canvas id="monthly-offenders-by-age1" height="274"></canvas>
             </div>
           </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
           $(document).ready(function() {
             var monthlyData = {
               labels: {!! json_encode($labelschart) !!},
+
               datasets: [
                 {
                   data: {!! json_encode($datachart) !!},
@@ -200,7 +290,7 @@
 
       </div>
 
-      <div class="row">
+      <div class="row my-2">
         <div class="col-xl-6 col-6">
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
@@ -209,7 +299,7 @@
               </div>
             </div>
             <div class="card-body">
-              <canvas id="yearly-visitors" class="chartjs" data-height="600"></canvas>
+              <canvas id="yearly-bookings" class="chartjs" data-height="600"></canvas>
             </div>
           </div>
         </div>
@@ -227,7 +317,7 @@
                   data: yearlyData.data,
                   fill: false,
                   borderWidth: 1,
-                  borderColor: '#007bff',
+                  borderColor: 'rgba(86,154,255,0.2)',
                   tension: 0.1
                 }]
               },
@@ -245,17 +335,17 @@
         <div class="col-xl-6 col-12">
           <div class="card">
             <div class="card-header">
-              Visitors Chart
+              Offenders Chart
             </div>
             <div class="card-body">
-              <canvas id="visitorChart" data-height="500"></canvas>
+              <canvas id="offendersChart" data-height="500"></canvas>
             </div>
           </div>
           <p class="card-text mb-0 pl-4 pb-5">TOTAL OFFENDERS RECORDED : {{ $allOffendersCount }}</p>
           <script>
             $(document).ready(function() {
               var chartData = <?php echo json_encode($chartDataL); ?>;
-              var ctx = document.getElementById('visitorChart').getContext('2d');
+              var ctx = document.getElementById('offendersChart').getContext('2d');
               var chart = new Chart(ctx, {
                 type: 'line',
                 data: chartData,

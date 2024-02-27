@@ -43,13 +43,15 @@ class UserController extends Controller
         ->get();
 
       $bookings=[];
+      $bookingsCounts=0;
         if ($officer){
             $bookings = Booking::where('officer_id', $officer->id)
                 ->orderBy('created_at', 'desc')
                 ->take(15)
                 ->get();
+            $bookingsCounts = Booking::where('officer_id', $officer->id)->count();
         }
-        return view('app.user.view-account', ['title' => 'User Profile', 'breadcrumb' => 'Account Profile', 'user'=>$user, 'bookings'=>$bookings, 'officer'=>$officer, 'activities'=>$activities]);
+        return view('app.user.view-account', ['title' => 'User Profile', 'breadcrumb' => 'Account Profile', 'user'=>$user, 'bookings'=>$bookings, 'officer'=>$officer, 'activities'=>$activities, 'bookingsCounts'=>$bookingsCounts]);
     }
     public function settings(Request $request): View
     {
