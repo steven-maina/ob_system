@@ -5,7 +5,7 @@
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Login Cover - Pages')
+@section('title', 'Login')
 
 @section('vendor-style')
   @vite([
@@ -34,7 +34,7 @@
 @endsection
 
 @section('content')
-  <div class="authentication-wrapper authentication-cover authentication-bg"  style="color:#1A3258">
+  <div class="authentication-wrapper authentication-cover authentication-bg">
     <div class="authentication-inner row">
       <!-- /Left Text -->
       <div class="d-none d-lg-flex col-lg-7 p-0">
