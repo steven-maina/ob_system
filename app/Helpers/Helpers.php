@@ -4,6 +4,9 @@ namespace App\Helpers;
 
 use Config;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -202,25 +205,18 @@ class Helpers
 }
 class Handler extends ExceptionHandler
 {
-
-  public function register()
+  /**
+   * @param $request
+   * @param Throwable $exception
+   * @return JsonResponse|RedirectResponse|Response|\Symfony\Component\HttpFoundation\Response
+   * @throws Throwable
+   */
+  public function render($request, Throwable $e)
   {
-    $this->reportable(function (Throwable $e) {
-      //
-    });
-  }
-  protected $dontFlash = [
-    'current_password',
-    'password',
-    'password_confirmation',
-  ];
-
-  public function render($request, Throwable $exception)
-  {
-    if ($exception instanceof TokenMismatchException) {
+    if ($e instanceof TokenMismatchException) {
       // Redirect to the login page
       return Redirect::route('login')->withErrors(['message' => __('Page Expired')]);
     }
-    return parent::render($request, $exception);
+    return parent::render($request, $e);
   }
 }

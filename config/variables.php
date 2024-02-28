@@ -4,7 +4,7 @@ return [
   "creatorName" => "DEVEINT LTD",
   "creatorUrl" => "#",
   "templateName" => "OB SYSTEM",
-  "templateSuffix" => "",
+  "templateSuffix" => "OB",
   "templateVersion" => "1.0.0",
   "templateFree" => false,
   "templateDescription" => "",
