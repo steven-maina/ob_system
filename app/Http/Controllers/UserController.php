@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Models\Booking;
+use App\Models\County;
 use App\Models\OffenseCase;
+use App\Models\Station;
 use App\Models\User;
 use App\Models\Officer;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +33,10 @@ class UserController extends Controller
             ->latest()
             ->paginate(25)
             ->withQueryString();
-        return view('app.users.index', compact('users', 'search'));
+        $stations=Station::orderBy('station_name', 'asc')->get();
+        $roles=Role::all();
+      $counties = County::orderBy('name', 'asc')->get();
+        return view('app.users.index', compact('users', 'search','stations','roles','counties'));
     }
     public function profile(Request $request): View
     {

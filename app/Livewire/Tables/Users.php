@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tables;
 
+use App\Models\Station;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -47,7 +48,7 @@ final class Users extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return User::query()->with('county','subcounty','ward');
     }
 
     public function relationSearch(): array
@@ -62,16 +63,13 @@ final class Users extends PowerGridComponent
             ->add('name')
             ->add('email')
             ->add('phone_number')
-            ->add('phone_number_verified_at')
-            ->add('email_verified_at')
-            ->add('ward_id')
-            ->add('subcounty_id')
-            ->add('last_login_at')
             ->add('dob_formatted', fn (User $model) => Carbon::parse($model->dob)->format('d/m/Y'))
             ->add('gender')
-            ->add('county_id')
             ->add('address')
-            ->add('nationality')
+          ->add('county', fn(User $user) => $user->county->name ?? '')
+          ->add('subcounty', fn(User $user) => $user->subcounty->subcounty_name ?? '')
+          ->add('ward', fn(User $user) => $user->ward->name ?? '')
+          ->add('nationality', fn(User $user) => $user->country->name ?? '')
             ->add('user_code')
             ->add('last_login_at')
             ->add('status')
@@ -93,49 +91,18 @@ final class Users extends PowerGridComponent
             Column::make('Phone number', 'phone_number')
                 ->sortable()
                 ->searchable(),
+          Column::make('Gender', 'gender')
+            ->sortable()
+            ->searchable(),
+          Column::make('Nationality', 'nationality'),
+          Column::make('County', 'county'),
+            Column::make('Subcounty', 'subcounty'),
 
-            Column::make('Phone number verified at', 'phone_number_verified_at_formatted', 'phone_number_verified_at')
-                ->sortable(),
+          Column::make('Ward', 'ward'),
 
-            Column::make('Phone number verified at', 'phone_number_verified_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Email verified at', 'email_verified_at_formatted', 'email_verified_at')
-                ->sortable(),
-
-            Column::make('Email verified at', 'email_verified_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Ward id', 'ward_id'),
-            Column::make('Subcounty id', 'subcounty_id'),
-            Column::make('Last login at', 'last_login_at_formatted', 'last_login_at')
-                ->sortable(),
-
-            Column::make('Last login at', 'last_login_at')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Dob', 'dob_formatted', 'dob')
-                ->sortable(),
-
-            Column::make('Gender', 'gender')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('County id', 'county_id'),
             Column::make('Address', 'address')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Nationality', 'nationality'),
-            Column::make('User code', 'user_code')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Last login at', 'last_login_at_formatted', 'last_login_at')
-                ->sortable(),
 
             Column::make('Last login at', 'last_login_at')
                 ->sortable()
@@ -144,9 +111,6 @@ final class Users extends PowerGridComponent
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
 
             Column::make('Created at', 'created_at')
                 ->sortable()
@@ -166,17 +130,26 @@ final class Users extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+//        $this->js('alert('.$rowId.')');
     }
-
+    #[\Livewire\Attributes\On('view')]
+    public function view($rowId): void
+    {
+//        $this->js('alert('.$rowId.')');
+    }
     public function actions(User $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
+                ->slot(' Edit ')
                 ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->class('btn btn-sm btn-primary pg-btn-white dark:ring-pg-secondaey-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('edit', ['rowId' => $row->id]),
+           Button::add('view')
+                ->slot(' View ')
+                ->id()
+                ->class('btn btn-sm btn-secondary pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('view', ['rowId' => $row->id])
         ];
     }
 

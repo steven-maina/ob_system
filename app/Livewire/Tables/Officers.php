@@ -47,7 +47,7 @@ final class Officers extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Officer::query()->with('user', 'station');
+        return Officer::query()->with('user', 'station','county','subcounty','ward');
     }
 
     public function relationSearch(): array

@@ -28,6 +28,13 @@ class SubcountyController extends Controller
 
         return view('app.subcounties.index', compact('subcounties', 'search'));
     }
+    public function list(Request $request, $county_id)
+    {
+      $this->authorize('view-any', Subcounty::class);
+      $subcounties= Subcounty::where('county_id',$county_id)
+        ->orderBy('subcounty_name', 'desc') ->get();
+      return response()->json($subcounties);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -43,5 +43,21 @@ class Officer extends Model
     {
         return $this->belongsTo(Station::class, 'station_id');
     }
+  public function county()
+  {
+    return $this->belongsTo(County::class);
+  }
+  public function country()
+  {
+    return $this->belongsTo(Country::class, 'nationality', 'id');
+  }
+  public function subcounty()
+  {
+    return $this->belongsTo(Subcounty::class);
+  }
+  public function ward()
+  {
+    return $this->belongsTo(Ward::class);
+  }
 
 }

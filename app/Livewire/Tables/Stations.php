@@ -52,7 +52,7 @@ final class Stations extends PowerGridComponent
 
     public function relationSearch(): array
     {
-        return [];
+        return ['ward.name', 'subcounty.subcounty_name', 'county.name'];
     }
 
     public function fields(): PowerGridFields
@@ -61,9 +61,9 @@ final class Stations extends PowerGridComponent
 //            ->add('id')
             ->add('station_name')
             ->add('station_number')
-          ->add('county', fn(Station $offended) => $offended->county->name)
-          ->add('subcounty', fn(Station $offended) => $offended->subcounty->subcounty_name)
-          ->add('ward', fn(Station $offended) => $offended->ward->name)
+            ->add('county', fn(Station $offended) => $offended->county->name)
+            ->add('subcounty', fn(Station $offended) => $offended->subcounty->subcounty_name)
+            ->add('ward', fn(Station $offended) => $offended->ward->name)
           ->add('officers', fn(Station $offended) => $offended->officers->count())
             ->add('created_at');
     }

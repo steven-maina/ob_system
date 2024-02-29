@@ -39,7 +39,6 @@ class User extends Authenticatable
         'email_verified_at',
         'ward_id',
         'subcounty_id',
-        'last_login_at',
         'dob',
         'gender',
         'county_id',

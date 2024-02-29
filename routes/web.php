@@ -98,7 +98,8 @@ Route::middleware(['auth','verified'])
     Route::resource('users', UserController::class);
     Route::resource('subcounties', SubcountyController::class);
     Route::resource('wards', WardController::class);
-
+    Route::get('wards/list/{subounty_id}', [WardController::class,'list'])->name('wards.list');
+    Route::get('subcounties/list/{county_id}', [SubcountyController::class,'list'])->name('wards.list');
     Route::prefix('user')->group(function () {
       Route::get('/settings',[UserController::class,'setting'])->name('settings');
       Route::get('/profile', [UserController::class, 'profile'])->name('profile');

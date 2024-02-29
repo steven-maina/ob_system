@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
+use App\Models\County;
 use App\Models\Ward;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\Officer;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use App\Models\Subcounty;
 use Illuminate\Http\Request;
@@ -28,8 +32,8 @@ class StationController extends Controller
             ->latest()
             ->paginate(5)
             ->withQueryString();
-
-        return view('app.stations.index', compact('stations', 'search'));
+      $counties = County::orderBy('name', 'asc')->get();
+        return view('app.stations.index', compact('stations', 'search', 'counties'));
     }
 
     /**
@@ -39,33 +43,56 @@ class StationController extends Controller
     {
         $this->authorize('create', Station::class);
 
-        $regions = Region::pluck('name', 'id');
+        $county = County::pluck('name', 'id');
         $officers = Officer::pluck('officer_name', 'id');
         $subcounties = Subcounty::pluck('subcounty_name', 'id');
         $wards = Ward::pluck('name', 'id');
 
         return view(
             'app.stations.create',
-            compact('regions', 'officers', 'subcounties', 'wards')
+            compact('county', 'officers', 'subcounties', 'wards')
         );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StationStoreRequest $request): RedirectResponse
-    {
-        $this->authorize('create', Station::class);
+  public function store(Request $request)
+  {
+    $this->authorize('create', Station::class);
 
-        $validated = $request->validated();
+    try {
+      $request->validate([
+        'station_name' => ['required', 'max:255', 'string'],
+        'county_id' => ['required', 'exists:counties,id'],
+        'subcounty_id' => ['required', 'exists:subcounties,id'],
+        'ward_id' => ['required', 'exists:wards,id'],
+      ]);
 
-        $station = Station::create($validated);
+   Station::create([
+        'station_name' => $request->input('station_name'),
+        'station_number' => Str::random(24),
+        'county_id' => $request->input('county_id'),
+        'subregion_id' => $request->input('subregion_id'),
+        'subcounty_id' => $request->input('subcounty_id'),
+        'ward_id' => $request->input('ward_id'),
+        'location' => $request->input('location'),
+        'sublocation' => $request->input('sublocation'),
+        'address' => $request->input('address'),
+      ]);
 
-        return redirect()
-            ->route('stations.edit', $station)
-            ->withSuccess(__('crud.common.created'));
+      return redirect()
+        ->back()
+        ->withSuccess(__('crud.common.created'));
+    } catch (ValidationException $e) {
+      $errors = collect($e->errors())->flatten()->all();
+//      return redirect()->back()->withErrors($errors)->withInput();
+      return response()->json([
+        'error' => 'Validation failed. Please check the form for errors.',
+        'errors' => $errors,
+      ], 422);
     }
-
+  }
     /**
      * Display the specified resource.
      */

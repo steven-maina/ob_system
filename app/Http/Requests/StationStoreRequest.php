@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Validator;
 
 class StationStoreRequest extends FormRequest
 {
@@ -30,4 +33,15 @@ class StationStoreRequest extends FormRequest
             'ward_id' => ['required', 'exists:wards,id'],
         ];
     }
+
+  protected function failedValidation(Validator|\Illuminate\Contracts\Validation\Validator $validator)
+  {
+    $errors = $validator->errors()->toArray();
+
+    $errorMessages = collect($errors)->flatten()->all();
+    throw new ValidationException($validator, response()->json([
+      'error' => 'Validation failed. Please check the form for errors.',
+      'errors' => $errorMessages,
+    ], 422));
+  }
 }

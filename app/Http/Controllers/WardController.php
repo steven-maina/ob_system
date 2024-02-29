@@ -28,6 +28,16 @@ class WardController extends Controller
 
         return view('app.wards.index', compact('wards', 'search'));
     }
+    public function list($subcounty_id)
+    {
+      info($subcounty_id);
+      $this->authorize('view-any', Ward::class);
+
+      $wards = Ward::where('subcounty_id',$subcounty_id)
+        ->orderBy('name', 'desc')->get();
+
+      return response()->json($wards);
+    }
 
     /**
      * Show the form for creating a new resource.
