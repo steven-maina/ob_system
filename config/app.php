@@ -169,6 +169,7 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
+    Yoeunes\Toastr\ToastrServiceProvider::class,
   ])->toArray(),
 
   /*
@@ -185,6 +186,7 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     // 'Example' => App\Facades\Example::class,
     'Helper' => App\Helpers\Helpers::class,
+    'Toastr' => Yoeunes\Toastr\Facades\Toastr::class,
   ])->toArray(),
 
 ];

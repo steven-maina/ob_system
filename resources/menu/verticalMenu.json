@@ -3,12 +3,12 @@
     {
       "url": "/",
       "name": "Dashboard",
-      "icon": "menu-icon tf-icons ti ti-home",
+      "icon": "menu-icon tf-icons fas fa-grid",
       "slug": "pages-home"
     },
     {
       "name": "Users",
-      "icon": "menu-icon tf-icons ti ti-users",
+      "icon": "menu-icon tf-icons fas fa-users",
       "slug": "app-user",
       "submenu": [
         {

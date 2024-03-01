@@ -10,6 +10,7 @@ use App\Models\Station;
 use App\Models\User;
 use App\Models\Officer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Yoeunes\Toastr\Toastr;
+use Yoeunes\Toastr\ToastrFactory;
 
 class UserController extends Controller
 {
@@ -105,21 +108,52 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserStoreRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $this->authorize('create', User::class);
+      $this->authorize('create', User::class);
+      try {
+      $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users',
+        'phone_number' => 'required|string|max:255',
+        'id_no' => 'required|numeric|unique:users',
+        'gender' => 'required|string|in:Male,Female,Other',
+        'status' => 'required|string|in:active,suspended',
+        'station_id' => 'required|exists:stations,id',
+        'role_id' => 'required|exists:roles,id',
+        'county' => 'required|exists:counties,id',
+        'subcounty_id' => 'required|exists:subcounties,id',
+        'ward' => 'required|exists:wards,id',
+      ]);
+      $user = User::create([
+        'name' => $request->input('name'),
+        'id_no' => $request->input('id_no'),
+        'phone_number' => $request->input('phone_number'),
+        'email' => $request->input('email'),
+        'password'=>$request->input('id_no'),
+        'gender' => $request->input('gender'),
+        'status' => $request->input('status'),
+        'station_id' => $request->input('station_id'),
+        'county' => $request->input('county'),
+        'subcounty_id' => $request->input('subcounty_id'),
+        'ward' => $request->input('ward'),
+      ]);
 
-        $validated = $request->validated();
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        $user = User::create($validated);
-
-        $user->syncRoles($request->roles);
+        $user->syncRoles($request->roles_id);
+      Activity::create([
+        'section'=>'Add User',
+        'action'=>'Adding New User',
+        'target'=>'Web',
+        'user_id'=>Auth::user()->id
+      ]);
 
         return redirect()
-            ->route('users.edit', $user)
-            ->withSuccess(__('crud.common.created'));
+            ->back()
+            ->withSuccess(__('User created successfully'));
+      } catch (\Exception $e) {
+
+        return redirect()->back()->withInput()->withErrors(['An error occurred while creating the user. Please try again.']);
+      }
     }
 
     /**

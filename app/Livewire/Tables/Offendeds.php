@@ -118,7 +118,7 @@ final class Offendeds extends PowerGridComponent
              Column::make('Phone number', 'phone_number')
                ->sortable()
                ->searchable(),
-
+          Column::make('Officer', 'officer'),
              Column::make('Country ', 'country'),
              Column::make('County', 'county'),
              Column::make('Subcounty ', 'subcounty'),
@@ -130,8 +130,6 @@ final class Offendeds extends PowerGridComponent
              Column::make('Address', 'address')
                ->sortable()
                ->searchable(),
-
-             Column::make('Officer', 'officer'),
 //            Column::make('Created at', 'created_at_formatted', 'created_at')
 //                ->sortable(),
 

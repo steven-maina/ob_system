@@ -32,7 +32,7 @@
 @section('content')
 
     <div class="card">
-        <livewire:tables.offended/>
+        <livewire:tables.offendeds/>
     </div>
 
 @endsection

@@ -125,6 +125,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-flasher/flasher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-flasher/flasher-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/silverstripe/cms" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/silverstripe/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/toastnz/toast-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yoeunes/toastr" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -132,5 +138,6 @@
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
     <orderEntry type="library" name="select2" level="application" />
     <orderEntry type="library" name="toastr.js" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

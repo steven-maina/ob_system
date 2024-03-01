@@ -65,7 +65,7 @@ final class Activities extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('user', fn(Activity $activity) => $activity->user->name)
+            ->add('user', fn(Activity $activity) => $activity->user->name ?? '')
             ->add('section')
             ->add('action')
             ->add('target')

@@ -7,7 +7,7 @@
       'resources/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.scss',
       'resources/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.scss',
       'resources/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.scss',
-//      'resources/assets/vendor/libs/select2/select2.scss',
+      'resources/assets/vendor/libs/select2/select2.scss',
       'resources/assets/vendor/libs/@form-validation/form-validation.scss',
     ])
 @endsection
@@ -16,7 +16,7 @@
     @vite([
       'resources/assets/vendor/libs/moment/moment.js',
       'resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js',
-//      'resources/assets/vendor/libs/select2/select2.js',
+      'resources/assets/vendor/libs/select2/select2.js',
       'resources/assets/vendor/libs/@form-validation/popular.js',
       'resources/assets/vendor/libs/@form-validation/bootstrap5.js',
       'resources/assets/vendor/libs/@form-validation/auto-focus.js',
@@ -52,7 +52,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="county">County</label>
-          <select id="county" class="select2 form-select" name="county_id">
+          <select id="county" class="form-select" name="county_id">
             <option value="">Select County</option>
             @foreach($counties as $county)
               <option value="{{ $county->id }}">{{ $county->name }}</option>
@@ -62,7 +62,7 @@
 
         <div class="mb-3">
           <label class="form-label" for="subcounty">Sub-County</label>
-          <select id="subcounty" class="select form-select" name="subcounty_id">
+          <select id="subcounty" class=" form-select" name="subcounty_id">
             <option value="">Select Sub-County</option>
           </select>
         </div>
@@ -95,20 +95,20 @@
         <livewire:tables.stations/>
     </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-47zltbR5t0u5JP07I/FL9l9CIrJ84P2a6QFyNX8onp+Wr9gW+prX5KpZd3X5aEzhGfxO2dFJAx7L1UwP4a9Cdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-ZMiCrZKHpfbX7vEa4X+k4Q4HRhuL86N1k7aJ6KjRzCazbQhY9fB8YdVpU9bK/sHc3d0D1A7usgOB+khM7fMd0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    $('.select2').select2();
-    $('.select2-container').each(function () {
-      var container = $(this);
-      container.find('.select2-search__field').after('<input type="text" class="second-search-input" placeholder="Second Search">');
-    });
-    $(document).on('click', function (e) {
-      if (!$(e.target).closest('.select2-container').length) {
-        $('.select2').select2('close');
-      }
-    });
-  </script>
+{{--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-47zltbR5t0u5JP07I/FL9l9CIrJ84P2a6QFyNX8onp+Wr9gW+prX5KpZd3X5aEzhGfxO2dFJAx7L1UwP4a9Cdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-ZMiCrZKHpfbX7vEa4X+k4Q4HRhuL86N1k7aJ6KjRzCazbQhY9fB8YdVpU9bK/sHc3d0D1A7usgOB+khM7fMd0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
+{{--  <script>--}}
+{{--    $('.select2').select2();--}}
+{{--    $('.select2-container').each(function () {--}}
+{{--      var container = $(this);--}}
+{{--      container.find('.select2-search__field').after('<input type="text" class="second-search-input" placeholder="Second Search">');--}}
+{{--    });--}}
+{{--    $(document).on('click', function (e) {--}}
+{{--      if (!$(e.target).closest('.select2-container').length) {--}}
+{{--        $('.select2').select2('close');--}}
+{{--      }--}}
+{{--    });--}}
+{{--  </script>--}}
   <script>
     $(document).ready(function () {
       var countySelect = $('#county');

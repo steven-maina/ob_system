@@ -59,6 +59,7 @@ Route::middleware(['auth:sanctum','checkUserStatus'])
 
 Route::middleware(['auth:sanctum', 'checkUserStatus'])
   ->group(function () {
+    Route::post('/reset-password', 'AuthController@updatePassword');
     Route::post('verify/otp/{otp}', [AuthController::class, 'verifyOTP1']);
     Route::apiResource('bookings', BookingController::class);
 

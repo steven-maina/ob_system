@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\View;
 
 class OffendedController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request)
     {
         $this->authorize('view-any', Offended::class);
 

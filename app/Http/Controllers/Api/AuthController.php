@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Activity;
+use App\Models\activity_log;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\UserCode;
@@ -10,6 +11,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use mysql_xdevapi\Exception;
 
@@ -31,6 +34,12 @@ class AuthController extends Controller
         $user = User::whereEmail($request->email)->firstOrFail();
 
         $token = $user->createToken('auth-token');
+      Activity::create([
+        'section'=>'Login',
+        'action'=>'Login',
+        'target'=>'Mobile',
+        'user_id'=>$user->id
+      ]);
 
         return response()->json([
             'token' => $token->plainTextToken,
@@ -136,10 +145,9 @@ class AuthController extends Controller
 
             Activity::create([
                 'user_id' => $user->id,
-                'target' => "Mobile App",
-                'section' => "login",
+                'target' => "Mobile",
+                'section' => "Login",
                 'action' => "User Logged in"
-
             ]);
 //            $user->last_login_at = now();
 //            $user->save();
@@ -182,6 +190,12 @@ class AuthController extends Controller
         }
         $user = DB::table('users')->where('id', $exists->user_id)->first();
         if ($user) {
+          Activity::create([
+            'section'=>'Verify OTP',
+            'action'=>'Valid OTP',
+            'target'=>'Mobile',
+            'user_id'=>$user->id
+          ]);
             return response()->json(
                 [
                     'message' => 'Valid OTP entered'
@@ -189,6 +203,12 @@ class AuthController extends Controller
                 200
             );
         }
+      Activity::create([
+        'section'=>'Verify OTP',
+        'action'=>'Invalid OTP',
+        'target'=>'Mobile',
+        'user_id'=>$user->id
+      ]);
         return response()->json(['message' => 'Invalid OTP entered'], 406);
     }
 
@@ -203,4 +223,25 @@ class AuthController extends Controller
         }
         return response()->json(['message' => 'Invalid OTP entered'], 406);
     }
+  public function updatePassword(Request $request)
+  {
+
+    $request->validate([
+      'phone_number' => 'required|string|exists:users',
+      'password' => 'required|string|min:6|confirmed',
+      'password_confirmation' => 'required',
+
+    ]);
+
+    User::where('phone_number', $request->phone_number)->update(['password' => Hash::make($request->password)]);
+    $activityLog = new activity();
+    $activityLog->activity = 'Password  updating';
+    $activityLog->section = 'Mobile';
+    $activityLog->action = 'Password ' . $request->user()->name . ' successfully updated ';
+    $activityLog->user_id = auth()->user()->id;
+    $activityLog->save();
+
+    return response()->json(['message' => 'Password has been changed sucessfully']);
+
+  }
 }
