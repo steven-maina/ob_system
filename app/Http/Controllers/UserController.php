@@ -146,7 +146,6 @@ class UserController extends Controller
         'target'=>'Web',
         'user_id'=>Auth::user()->id
       ]);
-
         return redirect()
             ->back()
             ->withSuccess(__('User created successfully'));
