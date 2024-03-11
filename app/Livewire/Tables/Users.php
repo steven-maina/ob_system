@@ -20,7 +20,7 @@ use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 final class Users extends PowerGridComponent
 {
     use WithExport;
-  public int $perPage = 10;
+  public int $perPage = 25;
   public string $tableName="Users List";
 
   public array $perPageValues = [0, 5, 10, 15, 20, 30, 50];
@@ -48,12 +48,12 @@ final class Users extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query()->with('county','subcounty','ward');
+        return User::query()->with('county','subcounty','ward','roles');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return ['county.name', 'subcounty.subcounty_name', 'ward.name', 'roles.name'];
     }
 
     public function fields(): PowerGridFields
@@ -70,7 +70,8 @@ final class Users extends PowerGridComponent
           ->add('subcounty', fn(User $user) => $user->subcounty->subcounty_name ?? '')
           ->add('ward', fn(User $user) => $user->ward->name ?? '')
           ->add('nationality', fn(User $user) => $user->country->name ?? '')
-            ->add('user_code')
+          ->add('role', fn(User $user) => $user->getRoleNames()->implode(', '))
+          ->add('user_code')
             ->add('last_login_at')
             ->add('status')
             ->add('created_at');
@@ -93,6 +94,8 @@ final class Users extends PowerGridComponent
                 ->searchable(),
           Column::make('Gender', 'gender')
             ->sortable()
+            ->searchable(),
+          Column::make('Role', 'role')
             ->searchable(),
           Column::make('Nationality', 'nationality'),
           Column::make('County', 'county'),

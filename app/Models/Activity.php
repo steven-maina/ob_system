@@ -14,4 +14,8 @@ class Activity extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function station()
+    {
+        return $this->belongsTo(Station::class, 'station_id');
+    }
 }

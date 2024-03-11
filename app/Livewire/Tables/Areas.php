@@ -2,8 +2,7 @@
 
 namespace App\Livewire\Tables;
 
-use App\Models\Activity;
-use App\Models\Offender;
+use App\Models\Ward;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -17,13 +16,12 @@ use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class Activities extends PowerGridComponent
+final class Areas extends PowerGridComponent
 {
-    use WithExport;
-
+  use WithExport;
   protected bool $canLoadMore = true;
   public int $perPage = 25;
-  public string $tableName="Offended List";
+  public string $tableName="Wards List";
   public array $perPageValues = [0, 5, 10, 15, 20, 30, 50];
 
   public function setUp(): array
@@ -47,47 +45,31 @@ final class Activities extends PowerGridComponent
     ];
   }
 
-
-  public function datasource(): Builder
+    public function datasource(): Builder
     {
-        return Activity::query()->with('user');
+        return Ward::query()->with('subcounty');
     }
 
     public function relationSearch(): array
     {
-        return [
-          'user.name',
-          'user.email',
-        ];
+        return [];
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('user', fn(Activity $activity) => $activity->user->name ?? '')
-            ->add('section')
-            ->add('action')
-            ->add('target')
+//            ->add('subcounty_id', fn(Ward $ward) => $ward->subcounty->subcounty_name ?? '')
+          ->add('subcounty', fn(Ward $ward) => $ward->subcounty ? $ward->subcounty->subcounty_name : '')
+          ->add('name')
             ->add('created_at');
     }
-
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-          Column::make('Performed By', 'user')
-                ->sortable()
-                ->searchable(),
-          Column::make('Action', 'action')
-            ->searchable(),
-          Column::make('Section', 'section')
-            ->searchable(),
-          Column::make('Target', 'target')
-            ->searchable(),
-          Column::make('Date', 'created_at')
-            ->sortable()
-            ->searchable(),
+            Column::make('Ward Name', 'name')->sortable()->searchable(),
+            Column::make('Subcounty ', 'subcounty'),
             Column::action('Action')
         ];
     }
@@ -104,11 +86,11 @@ final class Activities extends PowerGridComponent
 //        $this->js('alert('.$rowId.')');
     }
 
-    public function actions(Activity $row): array
+    public function actions(Ward $row): array
     {
         return [
             Button::add('edit')
-                ->slot('View ')
+                ->slot('Edit')
                 ->id()
                 ->class('btn btn-sm btn-primary pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->dispatch('edit', ['rowId' => $row->id])

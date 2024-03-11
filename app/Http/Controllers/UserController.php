@@ -10,6 +10,8 @@ use App\Models\Station;
 use App\Models\User;
 use App\Models\Officer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -111,22 +113,31 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
       $this->authorize('create', User::class);
-      try {
-      $request->validate([
+      $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users',
         'phone_number' => 'required|string|max:255',
         'id_no' => 'required|numeric|unique:users',
+        'badge_number' => 'nullable|string|unique:officers',
         'gender' => 'required|string|in:Male,Female,Other',
         'status' => 'required|string|in:active,suspended',
         'station_id' => 'required|exists:stations,id',
-        'role_id' => 'required|exists:roles,id',
+        'role_id' => 'required|exists:roles,name',
         'county' => 'required|exists:counties,id',
         'subcounty_id' => 'required|exists:subcounties,id',
         'ward' => 'required|exists:wards,id',
       ]);
+      if ($validator->fails()) {
+//        toastr()->error('Validation failed. Please check the form.');
+        return redirect()->back()->with('error',$validator)->withInput();
+      }
+      DB::beginTransaction();
+        try {
+        $randomString = strtoupper(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789', 10 / 26 + 1)));
+        $user_code = rand(10, 99).substr($randomString, 0, 10).rand(1000, 9999);
       $user = User::create([
         'name' => $request->input('name'),
+        'user_code'=>$user_code,
         'id_no' => $request->input('id_no'),
         'phone_number' => $request->input('phone_number'),
         'email' => $request->input('email'),
@@ -134,25 +145,39 @@ class UserController extends Controller
         'gender' => $request->input('gender'),
         'status' => $request->input('status'),
         'station_id' => $request->input('station_id'),
-        'county' => $request->input('county'),
+        'county_id' => $request->input('county'),
+        'nationality' => 110,
         'subcounty_id' => $request->input('subcounty_id'),
-        'ward' => $request->input('ward'),
+        'ward_id' => $request->input('ward'),
       ]);
-
-        $user->syncRoles($request->roles_id);
+      $role=Role::findByName($request->role_id);
+      if ($role !=null && (strtolower($role->name=='officer'))){
+          Officer::create([
+            'officer_name' => $request->input('name'),
+            'user_id'=>$user->id,
+            'badge_number' => $request->input('badge_number'),
+            'rank' => $request->input('rank'),
+            'gender' => $request->input('gender'),
+            'station_id' => $request->input('station_id'),
+          ]);
+        }
+          $roleName = $request->role_id;
+          $user->syncRoles([$roleName]);
       Activity::create([
         'section'=>'Add User',
-        'action'=>'Adding New User',
+        'action'=>'Adding New User by the name '.$user->name,
         'target'=>'Web',
-        'user_id'=>Auth::user()->id
-      ]);
-        return redirect()
-            ->back()
-            ->withSuccess(__('User created successfully'));
-      } catch (\Exception $e) {
-
-        return redirect()->back()->withInput()->withErrors(['An error occurred while creating the user. Please try again.']);
-      }
+        'user_id'=>$request->user()->id,
+        'station_id' => $request->input('station_id'),
+          ]);
+          DB::commit();
+//          toastr()->success("User created successfully");
+        return redirect()->back()->withSuccess(__('User created successfully'));
+        } catch (\Exception $e) {
+          DB::rollBack();
+//          toastr()->error("Failed to create user. Please check your inputs and try again.");
+          return redirect()->back()->with('error', 'Failed to create user. Please check your inputs and try again');
+        }
     }
 
     /**

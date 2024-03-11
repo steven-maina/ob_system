@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'User List ')
+@section('title', 'Users List ')
 
 @section('vendor-style')
   @vite([
@@ -49,75 +49,122 @@
               @csrf
           <div class="mb-3">
             <label class="form-label" for="add-user-fullname">Full Name</label>
-            <input type="text" class="form-control" id="add-user-fullname" placeholder="User Name" name="name" aria-label="John"  REQUIRED/>
+            <input type="text" class="form-control" id="add-user-fullname" placeholder="User Name" name="name" aria-label="John"  required value="{{ old('name') }}"/>
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="add-user-email">Email</label>
-            <input type="email" id="add-user-email" class="form-control" placeholder="john@example.com" aria-label="john@example.com" name="email" required  />
+            <input type="email" id="add-user-email" class="form-control" placeholder="john@example.com" aria-label="john@example.com" name="email" required value="{{ old('email') }}" />
+            @error('email')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="add-user-contact">Phone Number</label>
-            <input type="text" id="add-user-contact" class="form-control phone-mask" placeholder="+254 (07) 12345678" aria-label="" name="phone_number" required  />
+            <input type="text" id="add-user-contact" class="form-control phone-mask" placeholder="+254 (07) 12345678" aria-label="" name="phone_number" required value="{{ old('phone_number') }}" />
+            @error('phone_number')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="add-user-contact">ID Number/PASSPORT</label>
-            <input type="number" id="add-user-id" class="form-control" placeholder="2345654374" aria-label="ID/PASSPORT" name="id_no" required />
+            <input type="number" id="add-user-id" class="form-control" placeholder="2345654374" aria-label="ID/PASSPORT" name="id_no" required value="{{ old('id_no') }}" />
+            @error('id_no')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="gender">Gender</label>
-            <select id="gender" class=" form-select" name="gender"  required>
-              <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+            <select id="gender" class="form-select" name="gender" required>
+              <option value="" @if(old('gender') == '') selected @endif>Select Gender</option>
+              <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
+              <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
+              <option value="Other" @if(old('gender') == 'Other') selected @endif>Other</option>
             </select>
+            @error('gender')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="status">Status</label>
-            <select id="status" class=" form-select" name="status">
-              <option value="">Select Status</option>
-                <option value="active" selected>Active</option>
-                <option value="suspended">Inactive</option>
+            <select id="status" class="form-select" name="status">
+              <option value="" @if(old('status') == '') selected @endif>Select Status</option>
+              <option value="active" @if(old('status') == 'active') selected @endif>Active</option>
+              <option value="suspended" @if(old('status') == 'suspended') selected @endif>Inactive</option>
             </select>
+            @error('status')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="station">Station</label>
             <select id="station" class="form-select" name="station_id">
-              <option value="">Select User Posted Station</option>
+              <option value="" @if(old('station_id') == '') selected @endif>Select User Posted Station</option>
               @foreach($stations as $station)
-                <option value="{{ $station->id }}">{{ $station->station_name }}</option>
+                <option value="{{ $station->id }}" @if(old('station_id') == $station->id) selected @endif>{{ $station->station_name }}</option>
               @endforeach
             </select>
+            @error('station_id')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="role">Roles</label>
-            <select id="role" class=" form-select" name="role_id" required >
-              <option value="">Select Role</option>
+            <select id="role" class="form-select" name="role_id" required onchange="toggleOfficerFields(this.value)">
+              <option value="" @if(old('role_id') == '') selected @endif>Select Role</option>
               @foreach($roles as $role)
-                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                <option value="{{ $role->name }}" @if(old('role_id') == $role->name) selected @endif>{{ $role->name }}</option>
               @endforeach
             </select>
+            @error('role_id')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
+
+          <div class="mb-3" id="officerFields" style="display: none;">
+            <label class="form-label" for="officerRank">Officer Rank</label>
+            <input type="text" class="form-control" id="officerRank" name="rank" value="{{ old('rank') }}">
+          </div>
+
+          <div class="mb-3" id="badgeFields" style="display: none;">
+            <label class="form-label" for="badgeNumber">Badge Number</label>
+            <input type="text" class="form-control" id="badgeNumber" name="badge_number" value="{{ old('badge_number') }}">
+            @error('badge_number')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+          </div>
+
           <div class="mb-3">
             <label class="form-label" for="county">Country</label>
             <select id="county" name="county" class=" form-select" required >
-              <option value="">Select County</option>
+              <option value="" @if(old('county') == '') selected @endif>Select County</option>
               @foreach($counties as $county)
-                <option value="{{ $county->id }}">{{ $county->name }}</option>
+                <option value="{{ $county->id }}" @if(old('county') == $county->name) selected @endif>{{ $county->name }}</option>
               @endforeach
             </select>
+            @error('county')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="subcounty">Sub-County</label>
             <select id="subcounty" class="form-select" name="subcounty_id" required>
               <option value="">Select Sub-County</option>
             </select>
+            @error('subcounty')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <div class="mb-3">
             <label class="form-label" for="ward">Ward</label>
             <select id="ward" name="ward" class="select2 form-select"  required>
               <option value="">Select</option>
             </select>
+            @error('ward')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
           </div>
           <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
           <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
@@ -125,25 +172,11 @@
       </div>
     </div>
     </div>
-
     <div class="card">
-    <livewire:tables.users/>
-  </div>
+      <livewire:tabs-component/>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-47zltbR5t0u5JP07I/FL9l9CIrJ84P2a6QFyNX8onp+Wr9gW+prX5KpZd3X5aEzhGfxO2dFJAx7L1UwP4a9Cdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-ZMiCrZKHpfbX7vEa4X+k4Q4HRhuL86N1k7aJ6KjRzCazbQhY9fB8YdVpU9bK/sHc3d0D1A7usgOB+khM7fMd0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
-{{--    <script>--}}
-{{--      $('.select2').select2();--}}
-{{--      $('.select2-container').each(function () {--}}
-{{--        var container = $(this);--}}
-{{--        container.find('.select2-search__field').after('<input type="text" class="second-search-input" placeholder="Second Search">');--}}
-{{--      });--}}
-{{--      $(document).on('click', function (e) {--}}
-{{--        if (!$(e.target).closest('.select2-container').length) {--}}
-{{--          $('.select2').select2('close');--}}
-{{--        }--}}
-{{--      });--}}
-{{--    </script>--}}
     <script>
       $(document).ready(function () {
         var countySelect = $('#county');
@@ -182,5 +215,17 @@
             });
         });
       });
+
+        function toggleOfficerFields(selectedRole) {
+        var officerFields = document.getElementById('officerFields');
+          var badgeFields = document.getElementById('badgeFields');
+      if (selectedRole === 'officer' || selectedRole === 'Officer' || selectedRole === 'OFFICER') {
+        officerFields.style.display = 'block';
+            badgeFields.style.display = 'block';
+          } else {
+            officerFields.style.display = 'none';
+            badgeFields.style.display = 'none';
+          }
+      }
     </script>
 @endsection

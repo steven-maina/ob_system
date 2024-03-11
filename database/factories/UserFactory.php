@@ -22,7 +22,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $randomString = strtoupper(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789', 10 / 26 + 1)));
-        $randomString = rand(10, 99).substr($randomString, 0, 10).rand(100, 999);
+        $randomString = rand(10, 99).substr($randomString, 0, 10).rand(1000, 9999);
         $phoneNumber = '07' . rand(1, 8) . rand(10000000, 99999999);
         return [
             'name' => $this->faker->name(),

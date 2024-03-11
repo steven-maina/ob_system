@@ -21,6 +21,10 @@ class County extends Model
     {
         return $this->hasMany(Subcounty::class);
     }
+    public function stations()
+    {
+        return $this->hasMany(Station::class);
+    }
 
     public function offenders()
     {

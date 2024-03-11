@@ -23,10 +23,11 @@ class WardController extends Controller
 
         $wards = Ward::search($search)
             ->latest()
-            ->paginate(5)
+            ->paginate(25)
             ->withQueryString();
+          $subcounties=Subcounty::orderBy('subcounty_name', 'asc')->get();
 
-        return view('app.wards.index', compact('wards', 'search'));
+        return view('app.wards.index', compact('wards', 'search','subcounties'));
     }
     public function list($subcounty_id)
     {
@@ -57,14 +58,10 @@ class WardController extends Controller
     public function store(WardStoreRequest $request): RedirectResponse
     {
         $this->authorize('create', Ward::class);
-
         $validated = $request->validated();
+        Ward::create($validated);
 
-        $ward = Ward::create($validated);
-
-        return redirect()
-            ->route('wards.edit', $ward)
-            ->withSuccess(__('crud.common.created'));
+        return redirect()->back()->withSuccess(__('crud.common.created'));
     }
 
     /**
