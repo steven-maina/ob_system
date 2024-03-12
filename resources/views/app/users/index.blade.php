@@ -137,7 +137,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label" for="county">Country</label>
+            <label class="form-label" for="county">County</label>
             <select id="county" name="county" class=" form-select" required >
               <option value="" @if(old('county') == '') selected @endif>Select County</option>
               @foreach($counties as $county)
