@@ -141,7 +141,7 @@ class UserController extends Controller
         'id_no' => $request->input('id_no'),
         'phone_number' => $request->input('phone_number'),
         'email' => $request->input('email'),
-        'password'=>$request->input('id_no'),
+        'password'=>Hash::make($request->input('id_no')),
         'gender' => $request->input('gender'),
         'status' => $request->input('status'),
         'station_id' => $request->input('station_id'),
@@ -149,6 +149,8 @@ class UserController extends Controller
         'nationality' => 110,
         'subcounty_id' => $request->input('subcounty_id'),
         'ward_id' => $request->input('ward'),
+        'email_verified_at'=>now(),
+        'phone_number_verified_at'=>now()
       ]);
       $role=Role::findByName($request->role_id);
       if ($role !=null && (strtolower($role->name=='officer'))){
